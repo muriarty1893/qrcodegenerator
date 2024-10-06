@@ -1,73 +1,70 @@
 # QR Code Encryption Project
 
-This project encrypts data from a CSV file, generates a QR code with the encrypted data, and then allows the encrypted message to be scanned and decrypted via a mobile QR code scanner. The project ensures that the decrypted message is displayed in plain text after being inputted into the application.
+This project demonstrates how to encrypt data from a CSV file, convert it into a QR code, scan it using a mobile app, and then decrypt the message back into its original form.
 
 ## Features
 
-- Read data from a CSV file
-- Encrypt the data using a symmetric encryption algorithm (AES)
-- Generate a QR code with the encrypted data
-- Scan the QR code with a mobile app to retrieve the encrypted message
-- Decrypt the message using the app to reveal the original plain text
+- Encrypt data using AES encryption
+- Generate a QR code from the encrypted message
+- Scan QR code to retrieve the encrypted message
+- Decrypt the encrypted message back to its original form
 
-## Dependencies
+## Project Structure
 
-To run this project, you need the following Python packages installed:
+```bash
+qr_encryption_project/
+│
+├── encryption/                # Encryption and Decryption logic
+│   ├── __init__.py
+│   ├── encrypt.py
+│   ├── decrypt.py
+│
+├── data_processing/           # CSV data handling
+│   ├── __init__.py
+│   ├── csv_handler.py
+│
+├── qr_code/                   # QR code generation and scanning
+│   ├── __init__.py
+│   ├── qr_generator.py
+│   ├── qr_scanner.py
+│
+├── main.py                    # Main script to run the project
+├── generate_csv.py            # Script to generate sample CSV data
+├── requirements.txt           # Python dependencies
+├── README.md                  # Project documentation
+└── data.csv                   # Sample data file
+```
 
-- `cryptography` (for AES encryption)
-- `qrcode` (for generating QR codes)
-- `pandas` (for handling CSV files)
-- `opencv-python` or `zbarlight` (for scanning QR codes)
+## Installation
 
-You can install the required packages using pip:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/qr_encryption_project.git
+   cd qr_encryption_project
+   ```
 
+2. Install the required Python packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-pip install cryptography qrcode[pil] pandas opencv-python
-How to Run the Project
-Generate CSV Data: If you don't have a CSV file, generate one as shown below:
+## Usage
 
-python generate_csv.py
-The file data.csv will be created with sample data.
+1. **Generate Sample CSV**:  
+   Run the script to create a sample CSV file:
+   ```bash
+   python generate_csv.py
+   ```
 
-Encrypt Data and Generate QR Code:
+2. **Run the Main Application**:  
+   Execute the main script to read, encrypt, generate QR, scan, and decrypt the message:
+   ```bash
+   python main.py
+   ```
 
-Use the provided script to read the CSV file, encrypt the data, and create a QR code with the encrypted content.
+3. **Scan the QR Code**:  
+   After the QR code is generated, you can scan it with a mobile app to retrieve the encrypted message.
 
-python encrypt_to_qr.py data.csv
-This will output a QR code image file, which you can scan using a mobile QR code scanner.
+## License
 
-Decrypt Data:
-
-After scanning the QR code and retrieving the encrypted message, input the encrypted text into the app to decrypt the message:
-
-
-Kodu kopyala
-python decrypt_message.py
-You will be prompted to enter the encrypted message. After decryption, the original data will be displayed.
-
-File Structure
-generate_csv.py: Generates the data.csv file with sample data.
-encrypt_to_qr.py: Reads the CSV file, encrypts the data, and generates a QR code.
-decrypt_message.py: Prompts the user to enter the encrypted message, decrypts it, and displays the original data.
-README.md: This file, providing information on how to use the project.
-Example
-
-Original CSV File:
-
-ID,Name,Age,Email<br>
-1,Alice,25,alice@example.com<br>
-2,Bob,30,bob@example.com<br>
-Encrypted QR Code: After running the encrypt_to_qr.py script, a QR code image will be generated with the encrypted content of the CSV.
-
-Decryption: Once the QR code is scanned, the encrypted message can be decrypted back to its original form using the decryption script.
-
-Future Improvements
-Implement a web interface for the encryption and decryption process.
-Add more sophisticated encryption methods.
-Improve error handling for incorrect inputs.
-
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-
-Bu içeriği GitHub projenizdeki `README.md` dosyasına yapıştırarak direkt kullanabilirsiniz. 
+This project is licensed under the MIT License.
