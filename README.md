@@ -26,8 +26,6 @@ pip install cryptography qrcode[pil] pandas opencv-python
 How to Run the Project
 Generate CSV Data: If you don't have a CSV file, generate one as shown below:
 
-bash
-Kodu kopyala
 python generate_csv.py
 The file data.csv will be created with sample data.
 
@@ -35,8 +33,6 @@ Encrypt Data and Generate QR Code:
 
 Use the provided script to read the CSV file, encrypt the data, and create a QR code with the encrypted content.
 
-
-Kodu kopyala
 python encrypt_to_qr.py data.csv
 This will output a QR code image file, which you can scan using a mobile QR code scanner.
 
@@ -55,10 +51,9 @@ encrypt_to_qr.py: Reads the CSV file, encrypts the data, and generates a QR code
 decrypt_message.py: Prompts the user to enter the encrypted message, decrypts it, and displays the original data.
 README.md: This file, providing information on how to use the project.
 Example
+
 Original CSV File:
 
-
-Kodu kopyala
 ID,Name,Age,Email
 1,Alice,25,alice@example.com
 2,Bob,30,bob@example.com
