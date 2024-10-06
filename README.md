@@ -54,9 +54,9 @@ Example
 
 Original CSV File:
 
-ID,Name,Age,Email
-1,Alice,25,alice@example.com
-2,Bob,30,bob@example.com
+ID,Name,Age,Email<br>
+1,Alice,25,alice@example.com<br>
+2,Bob,30,bob@example.com<br>
 Encrypted QR Code: After running the encrypt_to_qr.py script, a QR code image will be generated with the encrypted content of the CSV.
 
 Decryption: Once the QR code is scanned, the encrypted message can be decrypted back to its original form using the decryption script.
