@@ -1,13 +1,13 @@
-from cryptography.fernet import Fernet
+from datetime import datetime
+from Crypto.Cipher import AES
+import base64
 
-def generate_key():
-    return Fernet.generate_key()
+key = b'Sixteen byte key'
+cipher = AES.new(key, AES.MODE_EAX)
 
-def encrypt_data(data, key):
-    fernet = Fernet(key)
-    encrypted = fernet.encrypt(data.encode())
-    return encrypted
-
-def save_key(key, filename='secret.key'):
-    with open(filename, 'wb') as key_file:
-        key_file.write(key)
+def encrypt_data(data):
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    data_with_timestamp = f"{data}|{timestamp}"
+    nonce = cipher.nonce
+    encrypted_data, tag = cipher.encrypt_and_digest(data_with_timestamp.encode('utf-8'))
+    return base64.b64encode(nonce + encrypted_data).decode('utf-8')

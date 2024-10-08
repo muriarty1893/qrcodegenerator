@@ -1,11 +1,18 @@
-from cryptography.fernet import Fernet
+from datetime import datetime, timedelta
+from Crypto.Cipher import AES
+import base64
 
-def load_key(filename='secret.key'):
-    with open(filename, 'rb') as key_file:
-        key = key_file.read()
-    return key
+key = b'Sixteen byte key'
+cipher = AES.new(key, AES.MODE_EAX)
 
-def decrypt_data(encrypted_data, key):
-    fernet = Fernet(key)
-    decrypted = fernet.decrypt(encrypted_data).decode()
-    return decrypted
+def decrypt_data(encrypted_data):
+    encrypted_data = base64.b64decode(encrypted_data)
+    nonce = encrypted_data[:16]
+    encrypted_message = encrypted_data[16:]
+    cipher = AES.new(key, AES.MODE_EAX, nonce=nonce)
+    decrypted_data = cipher.decrypt(encrypted_message).decode('utf-8')
+    data, timestamp_str = decrypted_data.split('|')
+    timestamp = datetime.strptime(timestamp_str, '%Y-%m-%d %H:%M:%S')
+    if datetime.now() > timestamp + timedelta(hours=24):
+        return "Error: QR Code has expired."
+    return data
