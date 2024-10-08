@@ -1,5 +1,5 @@
 import pandas as pd
-
+# Don't use this function unless you don't already have a csv file
 def generate_csv(filename='data.csv'):
     data = {
         'ID': [1, 2],
